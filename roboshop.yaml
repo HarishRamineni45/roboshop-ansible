@@ -28,7 +28,7 @@
     ansible.builtin.debug:
       msg: "{{ ec2_output }}"
 
-  - Name: cretae r53 records
+  - name: cretae r53 records
     amazon.aws.route53:
       state: present
       zone: "{{ domain_name }}"
