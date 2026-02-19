@@ -26,12 +26,12 @@
         Name: "{{ item }}-{{ env }}"
     loop: "{{ instances }}"
     register: ec2_output
-    when: action == "create"
+    when: act == "create"
 
   - name: print the output
     ansible.builtin.debug:
       msg: "{{ ec2_output }}"
-    when: action == "create"
+    when: act == "create"
 
   - name: create r53 records
     amazon.aws.route53:
@@ -44,7 +44,7 @@
       wait: false
       overwrite: true
     loop: "{{ ec2_output.results }}" # list
-    when: action == "create"
+    when: act == "create"
 
   # - name: create r53 record for frontend
   #   amazon.aws.route53:
